@@ -1,8 +1,9 @@
 
 class GlassdoorScraper(object):
 
-    def __init__(self):
-        pass
+    jobsFetched = []
+
 
     def start(self):
-        pass
+
+        return self.jobsFetched

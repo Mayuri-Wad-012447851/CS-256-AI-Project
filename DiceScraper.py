@@ -49,6 +49,7 @@ class DiceScraper(object):
                 if (job.jobTitle != None and job.jobLink != None and job.summary != []):
                     self.jobsFetched.append(job)
                     job.printDetails()
+        return self.jobsFetched
 
     def cleanAndProcess(self,soupObject):
         stopwords = ['a', "a's", 'able', 'about', 'above', 'according', 'accordingly', 'across', 'actually', 'after',

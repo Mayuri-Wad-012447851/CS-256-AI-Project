@@ -31,6 +31,8 @@ class HandshakeScraper(object):
         self.enter_keyword_and_location(driver)
         self.fetch_jobs(driver)
 
+        return self.jobsFetched
+
     def fetch_jobs(self, driver):
         current_url = driver.page_source
         driver.get(current_url)

@@ -5,18 +5,20 @@ from IndeedScraper import *
 
 class Webscraper(object):
 
+    jobs_fetched = []
+
     def run_handshake_scraper(self, username, password):
         scraper = HandshakeScraper(username, password)
-        scraper.start()
+        self.jobs_fetched.extend(scraper.start())
 
     def run_glassdoor_scraper(self):
         scraper = GlassdoorScraper()
-        scraper.start()
+        self.jobs_fetched.extend(scraper.start())
 
     def run_dice_scraper(self):
         scraper = DiceScraper()
-        scraper.start()
+        self.jobs_fetched.extend(scraper.start())
 
     def run_indeed_scraper(self):
         scraper = IndeedScraper()
-        scraper.start()
+        self.jobs_fetched.extend(scraper.start())

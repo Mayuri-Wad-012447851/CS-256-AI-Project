@@ -58,6 +58,7 @@ class IndeedScraper(object):
                 except Exception as e:
                     print e.message
                     continue
+        return self.jobsFetched
 
     def cleanAndProcess(self,soupObject):
         stopwords = ['a', "a's", 'able', 'about', 'above', 'according', 'accordingly', 'across', 'actually', 'after',

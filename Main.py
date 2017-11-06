@@ -1,10 +1,14 @@
 from Webscraper import *
+from Utils import *
 import argparse
+
 
 '''
     Function which acts as a starting point to all services
 '''
 def main_run(**kwargs):
+
+    utils = Utils()
 
     # to iterate over options until a Quit signal is received
     while (True):
@@ -30,7 +34,8 @@ def main_run(**kwargs):
             scraper.run_indeed_scraper()
 
         elif choice == "2":
-            pass
+            utils.process_data_for_clustering()
+
 
         elif choice == "3":
             pass

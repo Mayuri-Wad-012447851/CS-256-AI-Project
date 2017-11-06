@@ -7,6 +7,7 @@ class IndeedScraper(object):
     jobsFetched = []
 
     def start(self):
+        print '\nFetching jobs from indeed.com'
 
         urlKeyword = "Computer Science"
         webURL = "http://www.indeed.com/jobs?q=" + urlKeyword + "&start="
@@ -53,11 +54,13 @@ class IndeedScraper(object):
 
                     if (job.jobTitle != None and job.jobLink != None):
                         self.jobsFetched.append(job)
-                        job.printDetails()
+                        print job.jobTitle
 
                 except Exception as e:
                     print e.message
                     continue
+
+        print 'Fetching jobs from indeed.com completed.'
         return self.jobsFetched
 
     def cleanAndProcess(self,soupObject):

@@ -8,6 +8,8 @@ class DiceScraper(object):
 
     def start(self):
 
+        print '\nFetching jobs from dice.com'
+
         webURL = "https://www.dice.com/jobs?q=Computer+Science&l=San+Jose%2C+CA"
 
         for page in range(1, 101):
@@ -48,7 +50,9 @@ class DiceScraper(object):
 
                 if (job.jobTitle != None and job.jobLink != None and job.summary != []):
                     self.jobsFetched.append(job)
-                    job.printDetails()
+                    print job.jobTitle
+
+        print 'Fetching jobs from dice.com completed.'
         return self.jobsFetched
 
     def cleanAndProcess(self,soupObject):

@@ -18,12 +18,14 @@ class Job:
 
     #method to print job features
     def printDetails(self):
-        print "\nJob Title:\t"+str(self.jobTitle)
-        print "\nLocation:\t" + str(self.address)
+        print "Job Title:\t"+str(self.jobTitle)
+        print "Location:\t" + str(self.address)
         print "Company:\t"+str(self.companyName)
         joburl = urllib.quote(self.jobLink.encode('utf8'), ':/')
         print "Link:\t"+str(joburl)
         print str(self.summary)
 
+    def set_id(self, id):
+        self.id = id
 
 

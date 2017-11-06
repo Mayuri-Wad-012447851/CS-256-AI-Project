@@ -23,8 +23,8 @@ def main_run(**kwargs):
 
         elif choice == "1":
             scraper = Webscraper()
-            scraper.run_handshake_scraper(kwargs["username"],kwargs["password"])
-            scraper.run_glassdoor_scraper()
+            # scraper.run_handshake_scraper(kwargs["username"],kwargs["password"])
+            # scraper.run_glassdoor_scraper()
             scraper.run_dice_scraper()
             scraper.run_indeed_scraper()
 

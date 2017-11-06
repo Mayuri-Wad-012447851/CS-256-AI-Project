@@ -6,6 +6,9 @@ class IndeedScraper(object):
 
     jobsFetched = []
 
+    '''
+        Function to scrape Computer Science jobs from indeed.com
+    '''
     def start(self):
         print '\nFetching jobs from indeed.com'
 
@@ -63,6 +66,9 @@ class IndeedScraper(object):
         print 'Fetching jobs from indeed.com completed.'
         return self.jobsFetched
 
+    '''
+        Function to remove stop words from job description and stores description as array of tokens
+    '''
     def cleanAndProcess(self,soupObject):
         stopwords = ['a', "a's", 'able', 'about', 'above', 'according', 'accordingly', 'across', 'actually', 'after',
                      'afterwards', 'again', 'against', "ain't", 'all', 'allow', 'allows', 'almost', 'alone', 'along',

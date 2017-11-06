@@ -6,6 +6,9 @@ class DiceScraper(object):
 
     jobsFetched = []
 
+    '''
+        Function to scrape Computer Science jobs from dice.com
+    '''
     def start(self):
 
         print '\nFetching jobs from dice.com'
@@ -55,6 +58,9 @@ class DiceScraper(object):
         print 'Fetching jobs from dice.com completed.'
         return self.jobsFetched
 
+    '''
+        Function to remove stop words from job description and stores description as array of tokens
+    '''
     def cleanAndProcess(self,soupObject):
         stopwords = ['a', "a's", 'able', 'about', 'above', 'according', 'accordingly', 'across', 'actually', 'after',
                      'afterwards', 'again', 'against', "ain't", 'all', 'allow', 'allows', 'almost', 'alone', 'along',

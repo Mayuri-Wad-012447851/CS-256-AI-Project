@@ -35,18 +35,27 @@ def main_run(**kwargs):
 
         elif choice == "2":
             utils.process_data_for_clustering()
-
+            #create seperate .py file for k-means clustering mode
+            #call clustering function here
 
         elif choice == "3":
-            pass
+            utils.process_data_for_clustering()
+            # create seperate .py file for single link clustering mode
+            # call clustering function here
 
         elif choice == "4":
-            pass
+            utils.process_data_for_clustering()
+            # create seperate .py file for complete link clustering mode
+            # call clustering function here
 
         else:
             print '\nYou entered values other than 1, 2, 3, 4, 5, 6, 7. Please try again.'
             continue
 
+'''
+    Function to parse command line arguments required for handshake scraper
+    It parses input username and password for handshake login
+'''
 def parse_command_line_args():
     parser = argparse.ArgumentParser(description="""
             parse parameters
@@ -60,6 +69,7 @@ def parse_command_line_args():
             enter password
             """)
     return vars(parser.parse_args())
+
 
 if __name__ == '__main__':
     search_keys = parse_command_line_args()

@@ -5,7 +5,9 @@ class Utils(object):
     TF_Reversed_Corpus = {}
     term_IDFs = {}
 
-    #logic to process data for clustering
+    '''
+        Function to initiate pre-processing on data for clustering
+    '''
     def process_data_for_clustering(self):
         self.buildCorpus()
         self.buildReversedCorpus()
@@ -17,7 +19,9 @@ class Utils(object):
             print "TF document"+str(job.TFvector)
             print "TF*IDF document"+str(job.TF_IDF)
 
-    #This method builds a job document term matrix
+    '''
+        Function to build Corpus of terms and their frequencies in each document
+    '''
     def buildCorpus(self):
         Corpus = {}
 
@@ -33,7 +37,9 @@ class Utils(object):
                 Corpus[word][i] += 1
         self.TF_Corpus = Corpus
 
-    # reversing the corpus
+    '''
+        Function to reverse the corpus as job ids vs. corresponding term frequency document
+    '''
     def buildReversedCorpus(self):
         ReversedCorpus = {}
 
@@ -54,7 +60,9 @@ class Utils(object):
 
         self.TF_Reversed_Corpus = ReversedCorpus
 
-    #computing all tf documents
+    '''
+        Function to compute term frequency vector for all fetched jobs
+    '''
     def compute_TF_documents(self):
 
         for job in Webscraper.jobs_fetched:
@@ -65,7 +73,9 @@ class Utils(object):
                 var2 = sum(self.TF_Reversed_Corpus[job.id])
                 job.TFvector.append(float(var1 / var2))
 
-    # calculating TF*IDFs of all terms
+    '''
+        Function to compute tf*idf vector for all fetched jobs
+    '''
     def compute_TF_IDFs(self):
 
         terms = self.TF_Corpus.keys()
@@ -86,7 +96,5 @@ class Utils(object):
                 val = float(idf_terms[terms[i]])
                 val2 = float(job.TFvector[i])
                 job.TF_IDF.append(float(val * val2))
-
-
 
         self.term_IDFs = idf_terms

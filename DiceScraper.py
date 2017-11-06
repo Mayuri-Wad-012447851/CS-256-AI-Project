@@ -15,23 +15,21 @@ class DiceScraper(object):
             url = "%s%d" % (webURL, page)
             target = Soup(urllib.urlopen(url), "html.parser")
 
-            targetElements = target.findAll('div', attrs={'class': ' row result'})
+            targetElements = target.findAll('div', attrs={'class': 'serp-result-content bold-highlight'})
             if targetElements == []:
                 break
             for element in targetElements:
                 # creating a job instance to store details like job title, company, address, JobLink
                 job = Job()
 
-                company = element.find('span', attrs={'itemprop': 'name'})
+                company = element.find('span', attrs={'class': 'compName'})
                 if company != None:
                     job.companyName = company.getText().strip()
-                title = element.find('a', attrs={'class': 'turnstileLink'}).attrs['title']
+                title = element.find('a', attrs={'class': 'dice-btn-link job-visited easy-apply'}).attrs['title']
                 if title != None:
                     job.jobTitle = title.strip()
-                addr = element.find('span', attrs={'itemprop': 'addressLocality'})
-                if addr != None:
-                    job.address = addr.getText().strip()
-                job.homeURL = "http://www.indeed.com"
+
+                job.homeURL = "https://www.dice.com"
                 job.jobLink = "%s%s" % (job.homeURL, element.find('a').get('href'))
 
                 skillsElement = element.find('span', attrs={'class': 'experienceList'})

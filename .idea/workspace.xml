@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b85f3076-2123-4270-8575-308cabc5a396" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DiceScraper.py" afterPath="$PROJECT_DIR$/DiceScraper.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/IndeedScraper.py" afterPath="$PROJECT_DIR$/IndeedScraper.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Main.py" afterPath="$PROJECT_DIR$/Main.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -44,8 +41,8 @@
       <file leaf-file-name="DiceScraper.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/DiceScraper.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="282">
-              <caret line="15" column="59" lean-forward="false" selection-start-line="15" selection-start-column="59" selection-end-line="15" selection-end-column="59" />
+            <state relative-caret-position="846">
+              <caret line="27" column="96" lean-forward="false" selection-start-line="27" selection-start-column="58" selection-end-line="27" selection-end-column="96" />
               <folding>
                 <element signature="e#0#37#0" expanded="true" />
               </folding>
@@ -521,8 +518,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/DiceScraper.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="282">
-          <caret line="15" column="59" lean-forward="false" selection-start-line="15" selection-start-column="59" selection-end-line="15" selection-end-column="59" />
+        <state relative-caret-position="846">
+          <caret line="27" column="96" lean-forward="false" selection-start-line="27" selection-start-column="58" selection-end-line="27" selection-end-column="96" />
           <folding>
             <element signature="e#0#37#0" expanded="true" />
           </folding>

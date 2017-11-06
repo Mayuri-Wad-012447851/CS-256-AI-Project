@@ -1,6 +1,9 @@
 from Webscraper import *
 import argparse
 
+'''
+    Function which acts as a starting point to all services
+'''
 def main_run(**kwargs):
 
     # to iterate over options until a Quit signal is received

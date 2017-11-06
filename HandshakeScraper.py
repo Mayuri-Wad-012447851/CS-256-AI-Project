@@ -56,6 +56,10 @@ class HandshakeScraper(object):
     def handshake_login(self, driver):
         time.sleep(3)
 
+        self.username = 'xyz@sjsu.edu'  #enter sjsu userid
+
+        self.password = 'xyz'   #enter sjsu pwd
+
         elem = driver.find_element(By.ID, "okta-signin-username")
         elem.send_keys(self.username)
         elem = driver.find_element(By.ID, "okta-signin-password")

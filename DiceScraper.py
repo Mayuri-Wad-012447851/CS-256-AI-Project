@@ -15,19 +15,18 @@ class DiceScraper(object):
             url = "%s%d" % (webURL, page)
             target = Soup(urllib.urlopen(url), "html.parser")
 
-            targetElements = target.findAll('div', attrs={'class': 'serp-result-content bold-highlight'})
+            targetElements = target.findAll('div', attrs={'class': 'complete-serp-result-div'})
             if targetElements == []:
                 break
             for element in targetElements:
                 # creating a job instance to store details like job title, company, address, JobLink
                 job = Job()
 
-                company = element.find('span', attrs={'itemprop': 'hiringOrganization'}).attrs['title']
-                if company != None:
-                    job.companyName = company.getText().strip()
+
+
                 title = element.find('span', attrs={'itemprop': 'title'})
                 if title != None:
-                    job.jobTitle = title.strip()
+                    job.jobTitle = title.getText().strip()
 
                 job.homeURL = "https://www.dice.com"
                 job.jobLink = "%s%s" % (job.homeURL, element.find('a', attrs={'itemprop': 'url'}).attrs['href'])
@@ -35,6 +34,15 @@ class DiceScraper(object):
                 if ((job.jobLink != "") and (job.jobLink != None)):
                     joburl = urllib.quote(job.jobLink.encode('utf8'), ':/')
                     joblinkTarget = Soup(urllib.urlopen(joburl), "html.parser")
+
+                    company = element.find('div', attrs={'class': 'brcs-block'})
+                    if company != None:
+                        job.companyName = company.getText().strip()
+
+                    addr = element.find('li', attrs={'itemprop': 'joblocation'})
+                    if addr != None:
+                        job.address = addr.getText().strip()
+
                     summaryElement = joblinkTarget.find('div', attrs={'itemprop': 'description'})
                     job.summary = self.cleanAndProcess(summaryElement)
 

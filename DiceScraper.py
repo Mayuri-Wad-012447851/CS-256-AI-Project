@@ -15,7 +15,7 @@ class DiceScraper(object):
 
         webURL = "https://www.dice.com/jobs?q=Computer+Science&l=San+Jose%2C+CA"
 
-        for page in range(1, 101):
+        for page in range(1, 10):
             page = (page - 1) * 10
             url = "%s%d" % (webURL, page)
             target = Soup(urllib.urlopen(url), "html.parser")
@@ -26,8 +26,6 @@ class DiceScraper(object):
             for element in targetElements:
                 # creating a job instance to store details like job title, company, address, JobLink
                 job = Job()
-
-
 
                 title = element.find('span', attrs={'itemprop': 'title'})
                 if title != None:

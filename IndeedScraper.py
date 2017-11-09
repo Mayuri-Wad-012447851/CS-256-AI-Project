@@ -15,7 +15,7 @@ class IndeedScraper(object):
         urlKeyword = "Computer Science"
         webURL = "http://www.indeed.com/jobs?q=" + urlKeyword + "&start="
 
-        for page in range(1, 101):
+        for page in range(1, 10):
             page = (page - 1) * 10
             url = "%s%d" % (webURL, page)
             target = Soup(urllib.urlopen(url), "html.parser")

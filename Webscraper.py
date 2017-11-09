@@ -16,7 +16,7 @@ class Webscraper(object):
         self.jobs_fetched.extend(scraper.start())
 
     '''
-        Function which initiates crawler on glassdoor portal
+        Function which initiates crawler on stackoverflow job portal
         It stores fetched jobs in jobs_fetched array
     '''
     def run_stackoverflow_scraper(self):

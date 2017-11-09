@@ -1,4 +1,4 @@
-from Webscraper import *
+from Environment import *
 from Utils import *
 import argparse
 
@@ -9,6 +9,7 @@ import argparse
 def main_run(**kwargs):
 
     utils = Utils()
+    env = Environment()
 
     # to iterate over options until a Quit signal is received
     while (True):
@@ -26,17 +27,10 @@ def main_run(**kwargs):
             exit(0)
 
         elif choice == "1":
-
-            scraper = Webscraper()
-            # scraper.run_handshake_scraper(kwargs["username"],kwargs["password"])
-            # scraper.run_glassdoor_scraper()
-            scraper.run_dice_scraper()
-            scraper.run_indeed_scraper()
+            env.start_webscraping_jobs()
 
         elif choice == "2":
-            utils.process_data_for_clustering()
-            #create seperate .py file for k-means clustering mode
-            #call clustering function here
+            env.initiate_clustering()
 
         elif choice == "3":
             utils.process_data_for_clustering()
@@ -49,7 +43,7 @@ def main_run(**kwargs):
             # call clustering function here
 
         else:
-            print '\nYou entered values other than 1, 2, 3, 4, 5, 6, 7. Please try again.'
+            print '\nYou entered values other than 1, 2, 3, 4, 5. Please try again.'
             continue
 
 '''

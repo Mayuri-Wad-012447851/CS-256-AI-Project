@@ -1,7 +1,7 @@
-from GlassdoorScraper import *
 from HandshakeScraper import *
 from DiceScraper import *
 from IndeedScraper import *
+from StackoverflowScraper import *
 
 class Webscraper(object):
 
@@ -19,8 +19,8 @@ class Webscraper(object):
         Function which initiates crawler on glassdoor portal
         It stores fetched jobs in jobs_fetched array
     '''
-    def run_glassdoor_scraper(self):
-        scraper = GlassdoorScraper()
+    def run_stackoverflow_scraper(self):
+        scraper = StackoverflowScraper()
         self.jobs_fetched.extend(scraper.start())
 
     '''

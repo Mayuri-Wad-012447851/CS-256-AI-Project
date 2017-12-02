@@ -74,6 +74,63 @@ class Utils():
             Function to remove stop words from job description and stores description as array of tokens
         '''
 
+    def calculateTermination(self, centroids, n, itr):
+        '''
+        Find the terminating condition by comparing distance of existing centroid with its previous iteration counterpart
+        '''
+        distance = 0
+        for clusterID in range(n):
+            # get the id of last centroid
+            backId = len(centroids) - clusterID - 1
+            # calculate sum of distances of each centroid with their older counterparts in the previous iteration
+            distance += self.cosineDistance(centroids[backId + n * itr], centroids[backId - n + n * itr])
+
+        # getting the mean distance of movement of each centroid
+        distance /= n
+        if distance < 0.01:
+            return True
+        else:
+            return False
+
+    def vectorAddition(self, vector1, vector2):
+        '''
+        Adds vector 1 and vector 2
+        '''
+        resultVector = vector1
+        for word in vector2.keys():
+            if resultVector.has_key(word):
+                resultVector[word] += vector2[word]
+            else:
+                resultVector[word] = vector2[word]
+
+        return resultVector
+
+    def divideVector(self, vector, divider):
+        for word in vector.keys():
+            vector[word] /= divider
+        return vector
+
+    def cosineDistance(self, rowVector, searchRowVector):
+        '''
+        Using cosine similarity on tf idf vector
+        '''
+        # rowVector.searchRowVector
+        numerator = 0
+        # ||searchRowVector||
+        denominatorS = 0
+        # ||rowVector||
+        denominatorR = 0
+
+        for word in searchRowVector.keys():
+            if rowVector.has_key(word):
+                numerator += (searchRowVector[word] * rowVector[word])
+            denominatorS += (searchRowVector[word] * searchRowVector[word])
+
+        for word in rowVector.keys():
+            denominatorR += (rowVector[word] * rowVector[word])
+
+        return 1 - round(numerator / (math.sqrt(denominatorS) * math.sqrt(denominatorR)), 5)
+
     def cleanAndProcess(self, soupObject):
 
         finalSummary = []

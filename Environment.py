@@ -1,24 +1,19 @@
 from Webscraper import *
+from Utils import *
 from sklearn.cluster import KMeans
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.cluster import KMeans
 import numpy as np
+from random import randint
+import operator
 
 vectorizer = TfidfVectorizer(stop_words='english')
 
 class Environment:
 
+    utils = Utils()
     jobs_fetched = []
-
-    def __init__(self):
-        pass
-
-    def process_summary(self, raw_summary):
-        summary = raw_summary
-
-
-        return summary
 
     def start_webscraping_jobs(self):
 
@@ -33,7 +28,6 @@ class Environment:
     def compute_vectors(self):
 
         Corpus = {}
-
 
         for job in self.jobs_fetched:
             for word in job.summary:
@@ -64,8 +58,8 @@ class Environment:
                 word = terms[j]
                 tf_matrix[job.id][j] = Corpus[word][job.id]
 
-        for k,v in tf_matrix.items():
-            print str(k) + " : \t\t" + str(v)
+        # for k,v in tf_matrix.items():
+        #     print str(k) + " : \t\t" + str(v)
 
         idf_terms = {}
         for term in terms:
@@ -76,8 +70,8 @@ class Environment:
                     occurance += 1
             idf_terms[term] = math.log(float(len(self.jobs_fetched) / occurance))
 
-        for k,v in idf_terms.items():
-            print str(k) + " : \t\t" + str(v)
+        # for k,v in idf_terms.items():
+        #     print str(k) + " : \t\t" + str(v)
 
 
         for job in self.jobs_fetched:
@@ -99,30 +93,23 @@ class Environment:
             print str(job.id) + " :" + str(job.TF_IDF)
 
 
-
-
     def initiate_clustering(self):
 
-        print 'Clustering job documents..'
         job_documents = []
 
+        clusters = 3
+
         for job in self.jobs_fetched:
-            job_documents.append(' '.join(job.summary))
+            desc = " ".join(job.summary)
+            job_documents.append(desc)
 
+        for doc in job_documents:
+            print doc+"\n\n"
+
+        vectorizer = TfidfVectorizer()
         X = vectorizer.fit_transform(job_documents)
-
-        true_k = 2
-        model = KMeans(n_clusters=true_k, init='k-means++', max_iter=1000, n_init=1)
+        model = KMeans(n_clusters=clusters, init='k-means++', max_iter=100, n_init=1)
         model.fit(X)
-
-        print("Top terms per cluster:")
-        order_centroids = model.cluster_centers_.argsort()[:, ::-1]
-        terms = vectorizer.get_feature_names()
-        for i in range(true_k):
-            print("Cluster %d:" % i),
-            for ind in order_centroids[i, :10]:
-                print(' %s' % terms[ind])
-
 
 
 

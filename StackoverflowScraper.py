@@ -57,7 +57,7 @@ class StackoverflowScraper(object):
                         self.jobsFetched.append(job)
                         job.id = count
                         count += 1
-                        # job.printDetails()
+                        job.printDetails()
 
                 except Exception as e:
                     continue

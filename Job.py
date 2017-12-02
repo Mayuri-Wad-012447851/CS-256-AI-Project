@@ -1,5 +1,5 @@
 import urllib
-import math
+import math, sys
 
 class Job:
 
@@ -15,6 +15,8 @@ class Job:
         self.summary = []
         self.TFvector = []
         self.TF_IDF = []
+        self.centroid_distances = [sys.maxint,sys.maxint,sys.maxint]
+        self.cluster = None
 
     #method to print job features
     def printDetails(self):

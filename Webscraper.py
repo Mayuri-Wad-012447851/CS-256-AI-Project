@@ -21,7 +21,8 @@ class Webscraper(object):
     '''
     def run_stackoverflow_scraper(self):
         scraper = StackoverflowScraper()
-        self.jobs_fetched.extend(scraper.start())
+        jobs = scraper.start(len(self.jobs_fetched))
+        self.jobs_fetched.extend(jobs)
 
     '''
         Function which initiates crawler on dice.com
@@ -29,7 +30,8 @@ class Webscraper(object):
     '''
     def run_dice_scraper(self):
         scraper = DiceScraper()
-        self.jobs_fetched.extend(scraper.start())
+        jobs = scraper.start(len(self.jobs_fetched))
+        self.jobs_fetched.extend(jobs)
 
     '''
         Function which initiates crawler on indeed.com
@@ -37,4 +39,5 @@ class Webscraper(object):
     '''
     def run_indeed_scraper(self):
         scraper = IndeedScraper()
-        self.jobs_fetched.extend(scraper.start())
+        jobs = scraper.start(len(self.jobs_fetched))
+        self.jobs_fetched.extend(jobs)

@@ -17,30 +17,22 @@ def main_run(**kwargs):
         print '\nWhat would you like to do?\n'
 
         print '1. Scrape jobs from web:\t'
-        print '2. Cluster jobs using k-means\t'
-        print '3. Cluster jobs using single link hierarchical clustering \t'
-        print '4. Cluster jobs using complete link hierarchical clustering\t'
-        print '5. Quit'
+        print '2. Compute TF*IDF vectors for job documents\t'
+        print '3. Cluster jobs using K-means \t'
+        print '4. Quit'
 
         choice = raw_input("\nType your option : \t").strip()
-        if choice == "5":
+        if choice == "4":
             exit(0)
 
         elif choice == "1":
             env.start_webscraping_jobs()
 
         elif choice == "2":
-            env.initiate_clustering()
+            env.compute_vectors()
 
         elif choice == "3":
-            utils.process_data_for_clustering()
-            # create seperate .py file for single link clustering mode
-            # call clustering function here
-
-        elif choice == "4":
-            utils.process_data_for_clustering()
-            # create seperate .py file for complete link clustering mode
-            # call clustering function here
+            env.initiate_clustering()
 
         else:
             print '\nYou entered values other than 1, 2, 3, 4, 5. Please try again.'

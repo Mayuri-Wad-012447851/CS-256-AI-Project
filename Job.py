@@ -18,6 +18,7 @@ class Job:
 
     #method to print job features
     def printDetails(self):
+        print "Job ID:\t"+str(self.id)
         print "Job Title:\t"+str(self.jobTitle)
         print "Location:\t" + str(self.address)
         print "Company:\t"+str(self.companyName)

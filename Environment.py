@@ -103,13 +103,49 @@ class Environment:
             desc = " ".join(job.summary)
             job_documents.append(desc)
 
-        for doc in job_documents:
-            print doc+"\n\n"
+        # for doc in job_documents:
+        #     print doc+"\n\n"
 
         vectorizer = TfidfVectorizer()
         X = vectorizer.fit_transform(job_documents)
         model = KMeans(n_clusters=clusters, init='k-means++', max_iter=100, n_init=1)
         model.fit(X)
+
+        # print "labels---------------------------"
+        # print model.labels_
+        #
+        # print "cluster centers---------------------"
+        # print model.cluster_centers_
+
+        for i in range(len(model.labels_)):
+            self.jobs_fetched[i].cluster = int(model.labels_[i])
+
+        cluster0 = []
+        cluster1 = []
+        cluster2 = []
+
+        for job in self.jobs_fetched:
+            if job.cluster == 0:
+                cluster0.append(job)
+            elif job.cluster == 1:
+                cluster1.append(job)
+            elif job.cluster == 2:
+                cluster2.append(job)
+
+        print 'Cluster 0:\n--------------------'
+        for job in cluster0:
+            print job.jobTitle
+
+        print 'Cluster 1:\n--------------------'
+        for job in cluster1:
+            print job.jobTitle
+
+        print 'Cluster 2:\n--------------------'
+        for job in cluster2:
+            print job.jobTitle
+
+
+
 
 
 

@@ -15,7 +15,7 @@ class StackoverflowScraper(object):
 
         print '\nFetching jobs from stackoverflow jobs portal'
 
-        webURL = "https://stackoverflow.com/jobs?sort=p"
+        webURL = "https://stackoverflow.com/jobs?sort=p&q=computer+science&l=san+jose"
 
         for page in range(1, 2):
             page = (page - 1) * 10
@@ -57,7 +57,7 @@ class StackoverflowScraper(object):
                         self.jobsFetched.append(job)
                         job.id = count
                         count += 1
-                        job.printDetails()
+                        # job.printDetails()
 
                 except Exception as e:
                     continue

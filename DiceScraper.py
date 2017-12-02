@@ -58,7 +58,7 @@ class DiceScraper(object):
                     self.jobsFetched.append(job)
                     job.id = count
                     count += 1
-                    job.printDetails()
+                    # job.printDetails()
 
         print "No. of jobs fetched: " + str(len(self.jobsFetched))
         print 'Fetching jobs from dice.com completed.'

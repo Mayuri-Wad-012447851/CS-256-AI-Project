@@ -66,9 +66,7 @@ stopWords.update(('a', "a's", 'able', 'about', 'above', 'according', 'accordingl
                      'resume', 'applicants', 'work'))
 
 class Utils():
-    TF_Corpus = {}
-    TF_Reversed_Corpus = {}
-    term_IDFs = {}
+    
     stemmer = PorterStemmer()
 
 

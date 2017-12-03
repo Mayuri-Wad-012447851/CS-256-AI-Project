@@ -96,7 +96,8 @@ class Utils():
             for word in text:
                 # removing stopwords from job summary
                 if word not in stopWords:
-                    word = self.stemmer.stem(word).encode('ascii', 'ignore')
+                    word = word.encode('ascii', 'ignore')
+                    # word = self.stemmer.stem(word).encode('ascii', 'ignore')
                     finalSummary.append(word)
 
         return finalSummary

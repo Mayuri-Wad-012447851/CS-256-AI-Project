@@ -1,7 +1,7 @@
+from Utils import *
 from bs4 import BeautifulSoup as Soup
 from Job import *
-import re, urllib
-from Utils import *
+import urllib
 
 class DiceScraper(object):
 

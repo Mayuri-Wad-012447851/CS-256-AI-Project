@@ -1,7 +1,7 @@
+from Utils import *
 from Job import *
 from bs4 import BeautifulSoup as Soup
-import re,urllib
-from Utils import *
+import urllib
 
 class IndeedScraper(object):
 

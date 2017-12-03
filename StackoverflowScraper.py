@@ -1,7 +1,7 @@
-from bs4 import BeautifulSoup as Soup
-from Job import *
-import re, urllib
 from Utils import *
+from Job import *
+from bs4 import BeautifulSoup as Soup
+import urllib
 
 class StackoverflowScraper(object):
 

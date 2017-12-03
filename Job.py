@@ -1,5 +1,4 @@
 import urllib
-import math, sys
 
 class Job:
 
@@ -15,7 +14,6 @@ class Job:
         self.summary = []
         self.TFvector = []
         self.TF_IDF = []
-        self.centroid_distances = [sys.maxint,sys.maxint,sys.maxint]
         self.cluster = None
 
     #method to print job features
@@ -27,8 +25,5 @@ class Job:
         joburl = urllib.quote(self.jobLink.encode('utf8'), ':/')
         print "Link:\t"+str(joburl)
         print str(self.summary)
-
-    def set_id(self, id):
-        self.id = id
 
 

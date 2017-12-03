@@ -1,5 +1,5 @@
-import math
 from Utils import *
+import math
 
 class SingleLinkClusteringAgent:
 
@@ -9,6 +9,8 @@ class SingleLinkClusteringAgent:
 
         Corpus = {}
 
+        #corpus generation..
+        # it generates a dictionary with keys as words from descriptions and values are their frequencies in job documents
         for i in range(len(jobs)):
             job = jobs[i]
             for word in job.summary:
@@ -24,6 +26,7 @@ class SingleLinkClusteringAgent:
         for k,v in Corpus.items():
             print str(k)+" : \t\t"+str(v)
 
+        #steps to generate term frequency matrix
         tf_matrix = {}
 
         terms = Corpus.keys()
@@ -44,6 +47,7 @@ class SingleLinkClusteringAgent:
         for k,v in tf_matrix.items():
             print str(k) + " : \t\t" + str(v)
 
+        #steps to compute IDFs for all words in corpus
         idf_terms = {}
         for term in terms:
             termVector = Corpus[term]
@@ -57,6 +61,7 @@ class SingleLinkClusteringAgent:
         for k,v in idf_terms.items():
             print str(k) + " : \t\t" + str(v)
 
+        #computing TFs for all job documents
         for i in range(len(jobs)):
             termFreq = tf_matrix[i]
             # finding TF for each job document

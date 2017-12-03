@@ -1,14 +1,10 @@
 from Environment import *
-from Utils import *
-import argparse
-
 
 '''
     Function which acts as a starting point to all services
 '''
-def main_run(**kwargs):
+def main_run():
 
-    utils = Utils()
     env = Environment()
 
     # to iterate over options until a Quit signal is received
@@ -38,25 +34,5 @@ def main_run(**kwargs):
             print '\nYou entered values other than 1, 2, 3, 4, 5. Please try again.'
             continue
 
-'''
-    Function to parse command line arguments required for handshake scraper
-    It parses input username and password for handshake login
-'''
-def parse_command_line_args():
-    parser = argparse.ArgumentParser(description="""
-            parse parameters
-            """)
-    parser.add_argument('--username', type=str,
-                        help="""
-            enter username
-            """)
-    parser.add_argument('--password', type=str,
-                        help="""
-            enter password
-            """)
-    return vars(parser.parse_args())
-
-
 if __name__ == '__main__':
-    search_keys = parse_command_line_args()
-    main_run(**search_keys)
+    main_run()

@@ -8,7 +8,6 @@ class DiceScraper(object):
     jobsFetched = []
     utils = Utils()
 
-
     '''
         Function to scrape Computer Science jobs from dice.com
     '''
@@ -52,7 +51,7 @@ class DiceScraper(object):
 
 
                     summaryElement = joblinkTarget.find('div', attrs={'itemprop': 'description'})
-                    job.summary = self.utils.cleanAndProcess(summaryElement)
+                    job.summary = self.utils.clean_process_summary(summaryElement)
 
                 if (job.jobTitle != None and job.jobLink != None and job.summary != []):
                     self.jobsFetched.append(job)

@@ -66,7 +66,7 @@ stopWords.update(('a', "a's", 'able', 'about', 'above', 'according', 'accordingl
                      'resume', 'applicants', 'work'))
 
 class Utils():
-    
+
     stemmer = PorterStemmer()
 
 
@@ -76,12 +76,12 @@ class Utils():
     def length(self,v):
         return math.sqrt(self.dotproduct(v, v))
 
-    def cosineDistance(self, vector1, vector2):
+    def cosine_distance(self, vector1, vector2):
 
         cosTheta = math.acos(self.dotproduct(vector1, vector2) / (self.length(vector1) * self.length(vector2)))
         return cosTheta
 
-    def cleanAndProcess(self, soupObject):
+    def clean_process_summary(self, soupObject):
 
         finalSummary = []
 

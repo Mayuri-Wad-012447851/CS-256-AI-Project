@@ -45,16 +45,16 @@ class IndeedScraper(object):
                     job.jobLink = "%s%s" % (job.homeURL, element.find('a').get('href'))
 
                     skillsElement = element.find('span', attrs={'class': 'experienceList'})
-                    job.skills = self.utils.cleanAndProcess(skillsElement)
+                    job.skills = self.utils.clean_process_summary(skillsElement)
 
                     summaryElement = element.find('span', attrs={'class': 'summary'})
-                    job.summary = self.utils.cleanAndProcess(summaryElement)
+                    job.summary = self.utils.clean_process_summary(summaryElement)
 
                     if ((job.jobLink != "") and (job.jobLink != None)):
                         joburl = urllib.quote(job.jobLink.encode('utf8'), ':/')
                         joblinkTarget = Soup(urllib.urlopen(joburl), "html.parser")
                         summaryElement = joblinkTarget.find('span', attrs={'class': 'summary'})
-                        job.summary.extend(self.utils.cleanAndProcess(summaryElement))
+                        job.summary.extend(self.utils.clean_process_summary(summaryElement))
 
                     if (job.jobTitle != None and job.jobLink != None):
                         self.jobsFetched.append(job)

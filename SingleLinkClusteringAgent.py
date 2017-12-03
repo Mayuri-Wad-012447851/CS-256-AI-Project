@@ -88,7 +88,7 @@ class SingleLinkClusteringAgent:
             distance_matrix[i] = []
             for j in range(len(jobs)):
                 if i != j:
-                    distance_matrix[i].append(self.utils.cosineDistance(jobs[i].TF_IDF, jobs[j].TF_IDF))
+                    distance_matrix[i].append(self.utils.cosine_distance(jobs[i].TF_IDF, jobs[j].TF_IDF))
                 else:
                     distance_matrix[i].append(0)
         print '=============Distance Matrix=================='

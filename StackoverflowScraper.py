@@ -51,7 +51,7 @@ class StackoverflowScraper(object):
                         joblinkTarget = Soup(urllib.urlopen(joburl), "html.parser")
 
                         summaryElement = joblinkTarget.find('div', attrs={'class': 'description'})
-                        job.summary = self.utils.cleanAndProcess(summaryElement)
+                        job.summary = self.utils.clean_process_summary(summaryElement)
 
                     if (job.jobTitle != None and job.jobLink != None and job.summary != []):
                         self.jobsFetched.append(job)

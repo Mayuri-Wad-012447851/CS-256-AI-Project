@@ -7,11 +7,6 @@ class SingleLinkClusteringAgent:
 
     def start(self, jobs):
 
-        for job in jobs:
-            print job.id
-            print job.jobTitle
-            print job.summary
-
         Corpus = {}
 
         for i in range(len(jobs)):
@@ -87,8 +82,10 @@ class SingleLinkClusteringAgent:
         for i in range(len(jobs)):
             distance_matrix[i] = []
             for j in range(len(jobs)):
-                distance_matrix[i].append(self.utils.cosineDistance(jobs[i].TF_IDF, jobs[j].TF_IDF))
-
+                if i != j:
+                    distance_matrix[i].append(self.utils.cosineDistance(jobs[i].TF_IDF, jobs[j].TF_IDF))
+                else:
+                    distance_matrix[i].append(0)
         print '=============Distance Matrix=================='
 
         for k, v in distance_matrix.items():

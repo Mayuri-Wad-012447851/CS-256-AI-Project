@@ -118,6 +118,7 @@ class Utils():
         return math.sqrt(self.dotproduct(v, v))
 
     def cosineDistance(self, vector1, vector2):
+        print "\n\n"
         print str(vector2)
         print str(vector1)
 

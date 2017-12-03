@@ -1,0 +1,111 @@
+/System/Library/Frameworks/Python.framework/Versions/2.7/bin/python2.7 /Users/samanvitha/Desktop/PythonProjects/AI_NLP/NLP.py
+[nltk_data] Downloading package maxent_ne_chunker to
+[nltk_data]     /Users/samanvitha/nltk_data...
+[nltk_data]   Package maxent_ne_chunker is already up-to-date!
+[nltk_data] Downloading package words to
+[nltk_data]     /Users/samanvitha/nltk_data...
+[nltk_data]   Package words is already up-to-date!
+[nltk_data] Downloading package wordnet to
+[nltk_data]     /Users/samanvitha/nltk_data...
+[nltk_data]   Package wordnet is already up-to-date!
+Class 1:   *************************************************************
+
+Topic: -----------------------------------------------------------------------------------
+Topics in full stack software engineering
+
+Course Description: ----------------------------------------------------------------------
+Introduction to topics in full stack software engineering such as python, reactjs, django, ship daily likes solving technically challenging problems, front end frameworks like react, empathetic front end engineers, unlimited vacation policy means, building high throughput systems
+
+Course Learning Outcomes: -----------------------------------------------------------------
+ use version control systems
+ identify customer pain points
+ ping pong tables
+ improve developer productivity
+ deliver high
+ give problem
+
+Summary:
+We can’t offer you artisan drinking water from a hidden valley in Norway but we can offer you the opportunity to work directly with the founders in shaping and executing this vision.
+We can’t offer you massages every day but we can offer you a tremendous amount of ownership and technical learning in your career.
+We can’t offer you ping pong tables (or at least not this year), but a 401K and insurance benefits do make the cut.
+Has at least 3 years of overall experience in building high throughput systems that scale
+Likes to work with product, design and other stakeholders in the company to identify customer pain points, come up with solutions, prototype, iterate and ship daily 
+
+
+Class 2:   *************************************************************
+
+Topic: -----------------------------------------------------------------------------------
+Topics in senior software engineering
+
+Course Description: ----------------------------------------------------------------------
+Introduction to topics in senior software engineering such as python, javascript, c++, extend well beyond web search, general purpose programming languages including, c ++, c #, python, coding standards qualifications minimum qualifications, manage individual projects priorities
+
+Course Learning Outcomes: -----------------------------------------------------------------
+ develop large scale design
+ include information retrieval
+ bring fresh ideas
+ revolutionize search
+ improve software
+ distribute computing
+ embed systems
+
+Summary:
+Google's software engineers develop the next-generation technologies that change how billions of users connect, explore, and interact with information and one another.
+We're looking for engineers who bring fresh ideas from all areas, including information retrieval, distributed computing, large-scale system design, networking and data storage, security, artificial intelligence, natural language processing, UI design and mobile; the list goes on and is growing every day.
+As a software engineer, you will work on a specific project critical to Google’s needs with opportunities to switch teams and projects as you and our fast-paced business grow and evolve.
+At Google, engineers not only revolutionize search, they routinely work on massive scalability and storage solutions, large-scale applications and entirely new platforms for developers around the world.
+Master’s degree or PhD in Engineering, Computer Science or related technical field.
+
+
+Class 3:   *************************************************************
+
+Topic: -----------------------------------------------------------------------------------
+Topics in senior full stack engineering
+
+Course Description: ----------------------------------------------------------------------
+Introduction to topics in senior full stack engineering such as python, javascript, angularjs, repeatable experiments per day without human error, vision benefits 401k plan fully stocked kitchen, benefits competitive salary generous equity, business critical order entry systems, early stage company robust medical
+
+Course Learning Outcomes: -----------------------------------------------------------------
+ enable molecular biology lab
+ turn molecular biology
+ automate laboratory
+ search 60
+ perform millions
+ lead provider
+ end problems
+
+Summary:
+Synthego is looking for a Senior Full Stack Software Engineer with excellent design sensibilities, to join our team and help create the world’s first fully automated cloud-enabled molecular biology lab.
+As a Full Stack Software engineer in the Commercial Software group you will own the end-to-end design of major deliverables that expand the capabilities of scientists around the world to perform molecular biology experiments.
+You will work with a cross functional team of Chemists, Biologists, Data Scientists, and Engineers to architect complicated workflows into clean, maintainable, delightful interfaces that deliver Synthego's transformative genome engineering solutions to the end user.
+Collaborate with cross-functional teams to define, design and ship new features for our customer facing workflows, products and internal tools
+Work with our Commercial, Product, and Marketing teams to deliver a clean, inspiring UI/UX experience for both our external and internal products
+Experience architecting and maintaining all or parts of a front-end web application
+Our vision is to bring automation to genome engineering, enabling scientists to run their own fully-automated laboratory at low cost, performing millions of controlled, repeatable experiments per day without human error.
+Founded by former SpaceX engineers, Synthego is a leading provider of genome engineering solutions.
+
+
+Class 4:   *************************************************************
+
+Topic: -----------------------------------------------------------------------------------
+Topics in backend engineering
+
+Course Description: ----------------------------------------------------------------------
+Introduction to topics in backend engineering such as python, aws, system, volume efficient etl data pipeline, art conversation engine system design, continuous integration environments follow, execution conduct code reviews, fast growing startup backed
+
+Course Learning Outcomes: -----------------------------------------------------------------
+ face console frontend build monitoring
+ base backend infrastructure build
+ include health insurance
+ grow fast
+ pay vacation
+ drive force
+ delight customers
+ alert platforms
+
+Summary:
+We believe that AI technologies and data-driven solutions are the driving force to establish the new standard of business operation and productivity.As a backend engineer, you'll: Design and build a highly scalable and available cloud-based backend infrastructure Build and optimize the state of the art conversation engine system Design and build the high-volume efficient ETL data pipeline for the end-to-end machine learning and analytics systems  Build and maintain a performant API system that serves the customer-facing console frontend Build monitoring & alerting platforms, automation tools and continuous integration environments Follow the product from inception to launch, and own large parts of the product’s execution Conduct code reviews for our peers, and learn from code reviews conducted with you BenefitsWe are a fast growing startup backed by Y-Combinator, with a great product and happy customers.
+
+
+
+Process finished with exit code 0

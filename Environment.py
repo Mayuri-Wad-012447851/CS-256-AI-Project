@@ -164,13 +164,14 @@ class Environment:
             print "Cluster" + str(k) + "---------------"
             for job in clusters[k]:
                 print "\t" + job.jobTitle
-            if count == number_of_clusters_for_nlp:
-                break
 
             print 'Initiating single-link hierarchical clustering on Cluster '+str(k)
             single_link_clustering_agent = SingleLinkClusteringAgent()
 
             single_link_clustering_agent.start(clusters[k])
+
+            if count == number_of_clusters_for_nlp:
+                break
 
 
 

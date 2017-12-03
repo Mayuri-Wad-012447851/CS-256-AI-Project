@@ -2,7 +2,7 @@ from Webscraper import *
 from nltk.corpus import stopwords
 from nltk import word_tokenize
 from nltk.stem import PorterStemmer
-import math
+import math, re
 stopWords = set(stopwords.words('english'))
 stopWords.update(('a', "a's", 'able', 'about', 'above', 'according', 'accordingly', 'across', 'actually', 'after',
                      'afterwards', 'again', 'against', "ain't", 'all', 'allow', 'allows', 'almost', 'alone', 'along',
@@ -118,9 +118,6 @@ class Utils():
         return math.sqrt(self.dotproduct(v, v))
 
     def cosineDistance(self, vector1, vector2):
-        print "\n\n"
-        print str(vector2)
-        print str(vector1)
 
         cosTheta = math.acos(self.dotproduct(vector1, vector2) / (self.length(vector1) * self.length(vector2)))
         return cosTheta

@@ -1,5 +1,6 @@
 from Webscraper import *
 from Utils import *
+from SingleLinkClusteringAgent import *
 from sklearn.cluster import KMeans
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
@@ -92,12 +93,23 @@ class Environment:
 
             print str(job.id) + " :" + str(job.TF_IDF)
 
+        # for job in self.jobs_fetched:
+        #     print job.jobTitle
+        #     print " ".join(job.summary)
+        #     print "\n"
+
 
     def initiate_clustering(self):
 
-        job_documents = []
+        while(True):
+            try:
+                number_of_clusters = raw_input("Enter number of clusters: ")
+                number_of_clusters = int(number_of_clusters)
+                break
+            except:
+                print "Invalid input. Please try again."
 
-        clusters = 3
+        job_documents = []
 
         for job in self.jobs_fetched:
             desc = " ".join(job.summary)
@@ -108,8 +120,8 @@ class Environment:
 
         vectorizer = TfidfVectorizer()
         X = vectorizer.fit_transform(job_documents)
-        model = KMeans(n_clusters=clusters, init='k-means++', max_iter=100, n_init=1)
-        model.fit(X)
+        model = KMeans(n_clusters=number_of_clusters, init='k-means++', max_iter=1000, n_init=1)
+        model.fit_transform(X)
 
         # print "labels---------------------------"
         # print model.labels_
@@ -120,29 +132,49 @@ class Environment:
         for i in range(len(model.labels_)):
             self.jobs_fetched[i].cluster = int(model.labels_[i])
 
-        cluster0 = []
-        cluster1 = []
-        cluster2 = []
+        # for job in self.jobs_fetched:
+        #     print job.jobTitle
+        #     print job.cluster
+
+        clusters = {}
+        for i in range(number_of_clusters):
+            clusters[i] = []
 
         for job in self.jobs_fetched:
-            if job.cluster == 0:
-                cluster0.append(job)
-            elif job.cluster == 1:
-                cluster1.append(job)
-            elif job.cluster == 2:
-                cluster2.append(job)
+            clusters[job.cluster].append(job)
 
-        print 'Cluster 0:\n--------------------'
-        for job in cluster0:
-            print job.jobTitle
 
-        print 'Cluster 1:\n--------------------'
-        for job in cluster1:
-            print job.jobTitle
+        for k,v in clusters.items():
+            print "Cluster"+str(k)+"---------------"
+            for job in v:
+                print "\t"+job.jobTitle
 
-        print 'Cluster 2:\n--------------------'
-        for job in cluster2:
-            print job.jobTitle
+        while (True):
+            try:
+                number_of_clusters_for_nlp = raw_input("Enter number of top clusters to choose for NLP: ")
+                number_of_clusters_for_nlp = int(number_of_clusters_for_nlp)
+                break
+            except:
+                print "Invalid input. Please try again."
+
+        print 'Printing 2 biggest clusters..'
+        count = 0
+        for k in sorted(clusters, key=lambda k: len(clusters[k]), reverse=True):
+            count += 1
+            print "Cluster" + str(k) + "---------------"
+            for job in clusters[k]:
+                print "\t" + job.jobTitle
+            if count == number_of_clusters_for_nlp:
+                break
+
+            print 'Initiating single-link hierarchical clustering on Cluster '+str(k)
+            single_link_clustering_agent = SingleLinkClusteringAgent()
+
+            single_link_clustering_agent.start(clusters[k])
+
+
+
+
 
 
 

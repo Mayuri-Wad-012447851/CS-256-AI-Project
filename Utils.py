@@ -2,6 +2,7 @@ from Webscraper import *
 from nltk.corpus import stopwords
 from nltk import word_tokenize
 from nltk.stem import PorterStemmer
+import math
 stopWords = set(stopwords.words('english'))
 stopWords.update(('a', "a's", 'able', 'about', 'above', 'according', 'accordingly', 'across', 'actually', 'after',
                      'afterwards', 'again', 'against', "ain't", 'all', 'allow', 'allows', 'almost', 'alone', 'along',
@@ -110,26 +111,18 @@ class Utils():
             vector[word] /= divider
         return vector
 
-    def cosineDistance(self, rowVector, searchRowVector):
-        '''
-        Using cosine similarity on tf idf vector
-        '''
-        # rowVector.searchRowVector
-        numerator = 0
-        # ||searchRowVector||
-        denominatorS = 0
-        # ||rowVector||
-        denominatorR = 0
+    def dotproduct(self,v1, v2):
+        return sum((a * b) for a, b in zip(v1, v2))
 
-        for word in searchRowVector.keys():
-            if rowVector.has_key(word):
-                numerator += (searchRowVector[word] * rowVector[word])
-            denominatorS += (searchRowVector[word] * searchRowVector[word])
+    def length(self,v):
+        return math.sqrt(self.dotproduct(v, v))
 
-        for word in rowVector.keys():
-            denominatorR += (rowVector[word] * rowVector[word])
+    def cosineDistance(self, vector1, vector2):
+        print str(vector2)
+        print str(vector1)
 
-        return 1 - round(numerator / (math.sqrt(denominatorS) * math.sqrt(denominatorR)), 5)
+        cosTheta = math.acos(self.dotproduct(vector1, vector2) / (self.length(vector1) * self.length(vector2)))
+        return cosTheta
 
     def cleanAndProcess(self, soupObject):
 

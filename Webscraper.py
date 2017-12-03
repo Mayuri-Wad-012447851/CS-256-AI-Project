@@ -1,7 +1,9 @@
 from HandshakeScraper import *
+
 from DiceScraper import *
 from IndeedScraper import *
 from StackoverflowScraper import *
+
 
 class Webscraper(object):
 

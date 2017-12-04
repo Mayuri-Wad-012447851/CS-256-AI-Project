@@ -72,7 +72,8 @@ class Environment:
             topic_name = "Cluster" + str(k)
 
             topic = Topic(topic_name)
-            topic.set_syllabus_content(clusters[k])
+            topic.cluster = clusters[k]
+            topic.set_syllabus_content()
             topics.append(topic)
 
             if count == number_of_clusters_for_nlp:
@@ -81,7 +82,18 @@ class Environment:
         print '\n\nRecommended Topics----------------------------'
         for topic in topics:
             print topic.topic_name
-            print topic.syllabus_content
+
+            print ("\nTopic: -----------------------------------------------------------------------------------")
+            print ("Topics in " + topic.topic + "\n")
+            print ("Course Description: ----------------------------------------------------------------------")
+            print ("Introduction to topics in " + topic.topic + " such as " + str(topic.technologies) + str(topic.listedTech))
+
+            print ("\nCourse Learning Outcomes: -----------------------------------------------------------------")
+            print topic.actionList
+            print ('Summary:')
+            print (topic.summary)
+            print ("\n")
+
             self.utils.generate_pdf(topic)
             self.utils.generate_html(topic)
 

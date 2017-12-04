@@ -101,7 +101,7 @@ class Utils():
         return finalSummary
 
     def generate_pdf(self, topic_obj):
-        pass
+        print 'Generating PDF..'
 
     def generate_html(self, topic_obj):
-        pass
+        print 'Generating HTML..'

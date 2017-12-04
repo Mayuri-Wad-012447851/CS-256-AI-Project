@@ -51,6 +51,7 @@ class Environment:
 
         print 'Below are '+str(number_of_clusters_for_nlp)+' biggest clusters of all clusters built using Kmeans'
         final_clusters_for_nlp = {}
+        topics = []
         count = 0
         for k in sorted(clusters, key=lambda k: len(clusters[k]), reverse=True):
             count += 1
@@ -71,10 +72,15 @@ class Environment:
             topic_name = "Cluster" + str(k)
 
             topic = Topic(topic_name)
-            topic.set_syllabus_content()
+            topic.set_syllabus_content(clusters[k])
+            topics.append(topic)
 
             if count == number_of_clusters_for_nlp:
                 break
+
+        for topic in topics:
+            print topic.topic_name
+            print topic.s
 
 
 

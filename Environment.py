@@ -78,9 +78,13 @@ class Environment:
             if count == number_of_clusters_for_nlp:
                 break
 
+        print '\n\nRecommended Topics----------------------------'
         for topic in topics:
             print topic.topic_name
-            print topic.s
+            print topic.syllabus_content
+            self.utils.generate_pdf(topic)
+            self.utils.generate_html(topic)
+
 
 
 

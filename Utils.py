@@ -99,3 +99,9 @@ class Utils():
                     finalSummary.append(word)
 
         return finalSummary
+
+    def generate_pdf(self, topic_obj):
+        pass
+
+    def generate_html(self, topic_obj):
+        pass

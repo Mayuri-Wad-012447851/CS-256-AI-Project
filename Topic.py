@@ -4,8 +4,7 @@ from SummarizationModule import *
 
 class Topic:
 
-    def __init__(self, topic_name):
-        self.topic_name = topic_name
+    def __init__(self):
         self.cluster = None
         self.topic = None
         self.technologies = None

@@ -68,10 +68,7 @@ class Environment:
 
             topic_name = single_link_clustering_agent.start(clusters[k])
 
-            #for now setting it to default dummy name
-            topic_name = "Cluster" + str(k)
-
-            topic = Topic(topic_name)
+            topic = Topic()
             topic.cluster = clusters[k]
             topic.set_syllabus_content()
             topics.append(topic)
@@ -81,7 +78,6 @@ class Environment:
 
         print '\n\nRecommended Topics----------------------------'
         for topic in topics:
-            print topic.topic_name
 
             print ("\nTopic: -----------------------------------------------------------------------------------")
             print ("Topics in " + topic.topic + "\n")

@@ -1,6 +1,8 @@
+
+from Utils import technologies_stopwords
+from SummarizationModule import *
 from bs4 import BeautifulSoup as Soup
 import urllib
-from SummarizationModule import *
 
 class Topic:
 
@@ -14,6 +16,7 @@ class Topic:
 
     def set_syllabus_content(self):
 
+
         #integration with NLP
         job_descriptions = ""
         technologies = set()
@@ -24,7 +27,9 @@ class Topic:
             joblinkTarget = Soup(urllib.urlopen(url), "html.parser")
             techTags = joblinkTarget.findAll('a', attrs={'class': 'post-tag job-link no-tag-menu'})
             for tag in range(len(techTags)):
-                technologies.add(str(techTags[tag].get_text()))
+                tech = str(techTags[tag].get_text())
+                if tech not in technologies_stopwords:
+                    technologies.add(tech)
 
             job_description = joblinkTarget.find('div', attrs={'class': 'description'})
             if job_description != None:

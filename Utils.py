@@ -3,6 +3,9 @@ from nltk.corpus import stopwords
 from nltk import word_tokenize
 from nltk.stem import PorterStemmer
 import math, re
+from pdfdocument.document import PDFDocument
+from io import BytesIO
+
 stopWords = set(stopwords.words('english'))
 stopWords.update(('a', "a's", 'able', 'about', 'above', 'according', 'accordingly', 'across', 'actually', 'after',
                      'afterwards', 'again', 'against', "ain't", 'all', 'allow', 'allows', 'almost', 'alone', 'along',
@@ -65,6 +68,10 @@ stopWords.update(('a', "a's", 'able', 'about', 'above', 'according', 'accordingl
                      'engineering', 'technical',
                      'resume', 'applicants', 'work'))
 
+technologies_stopwords = ['sysadmin', 'build', 'performance', 'infrastructure', 'startup', 'project-management','debugging',
+                          'go','system']
+
+
 class Utils():
 
     stemmer = PorterStemmer()
@@ -102,6 +109,27 @@ class Utils():
 
     def generate_pdf(self, topic_obj):
         print 'Generating PDF..'
+        path = "./PDFDocuments/"+topic_obj.topic+".pdf"
+
+        pdf = PDFDocument(path)
+        pdf.init_report()
+        pdf.h2("San Jose State University",style=pdf.style.bold)
+        pdf.h1("College of Science, Department of Computer Science",style=pdf.style.bold)
+        pdf.h1("Topics in "+topic_obj.topic,style=pdf.style.bold)
+        pdf.h2('Course Description',style=pdf.style.bold)
+        techs = ""
+        for tech in topic_obj.technologies:
+            techs += tech + ", "
+        pdf.p("\nIntroduction to topics in " + topic_obj.topic + " such as, "+techs)
+        pdf.p(str(topic_obj.listedTech))
+        pdf.h2("Course Learning Outcomes:",style=pdf.style.bold)
+        pdf.p(topic_obj.actionList)
+        pdf.h2("Summary:",style=pdf.style.bold)
+        pdf.p(topic_obj.summary)
+        pdf.generate()
+        print 'PDF generated..'
+
+
 
     def generate_html(self, topic_obj):
         print 'Generating HTML..'

@@ -7,6 +7,8 @@ class SingleLinkClusteringAgent:
 
     def start(self, jobs):
 
+        topic_name = ""
+
         Corpus = {}
 
         #corpus generation..
@@ -22,9 +24,9 @@ class SingleLinkClusteringAgent:
                     Corpus[word][i] = 1
                 Corpus[word][i] += 1
 
-        print "===============Corpus=========="
-        for k,v in Corpus.items():
-            print str(k)+" : \t\t"+str(v)
+        # print "===============Corpus=========="
+        # for k,v in Corpus.items():
+        #     print str(k)+" : \t\t"+str(v)
 
         #steps to generate term frequency matrix
         tf_matrix = {}
@@ -43,9 +45,9 @@ class SingleLinkClusteringAgent:
                 word = terms[j]
                 tf_matrix[i][j] = Corpus[word][i]
 
-        print "\n==================TF Matrix====================="
-        for k,v in tf_matrix.items():
-            print str(k) + " : \t\t" + str(v)
+        # print "\n==================TF Matrix====================="
+        # for k,v in tf_matrix.items():
+        #     print str(k) + " : \t\t" + str(v)
 
         #steps to compute IDFs for all words in corpus
         idf_terms = {}
@@ -57,9 +59,9 @@ class SingleLinkClusteringAgent:
                     occurance += 1
             idf_terms[term] = math.log(float(len(jobs) / occurance))
 
-        print "\n================TERM_IDFs======================="
-        for k,v in idf_terms.items():
-            print str(k) + " : \t\t" + str(v)
+        # print "\n================TERM_IDFs======================="
+        # for k,v in idf_terms.items():
+        #     print str(k) + " : \t\t" + str(v)
 
         #computing TFs for all job documents
         for i in range(len(jobs)):
@@ -70,7 +72,7 @@ class SingleLinkClusteringAgent:
                 var2 = sum(tf_matrix[i])
 
                 jobs[i].TFvector.append((float(var1) / float(var2)))
-            print str(i)+" -- "+str(jobs[i].id) + " :" + str(jobs[i].TFvector)
+            # print str(i)+" -- "+str(jobs[i].id) + " :" + str(jobs[i].TFvector)
 
         # computing TF*IDF for every job document
         for k in range(len(jobs)):
@@ -79,7 +81,7 @@ class SingleLinkClusteringAgent:
                 val2 = jobs[k].TFvector[i]
                 jobs[k].TF_IDF.append(float(val) * float(val2))
 
-            print str(k)+" -- "+str(jobs[k].id) + " :" + str(jobs[k].TF_IDF)
+            # print str(k)+" -- "+str(jobs[k].id) + " :" + str(jobs[k].TF_IDF)
 
         # generating distance matrix for all job documents using cosine distance
 
@@ -91,7 +93,12 @@ class SingleLinkClusteringAgent:
                     distance_matrix[i].append(self.utils.cosine_distance(jobs[i].TF_IDF, jobs[j].TF_IDF))
                 else:
                     distance_matrix[i].append(0)
-        print '=============Distance Matrix=================='
+        # print '=============Distance Matrix=================='
+        #
+        # for k, v in distance_matrix.items():
+        #     print str(k)+" : "+str(v)
 
-        for k, v in distance_matrix.items():
-            print str(k)+" : "+str(v)
+
+
+        #goal
+        return topic_name

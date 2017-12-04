@@ -1,10 +1,9 @@
 from Webscraper import *
 from SingleLinkClusteringAgent import *
 from Utils import *
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.cluster import KMeans
+from KmeansClusteringAgent import *
+from Topic import *
 
-vectorizer = TfidfVectorizer(stop_words='english')
 
 class Environment:
 
@@ -39,36 +38,8 @@ class Environment:
         # for doc in job_documents:
         #     print doc+"\n\n"
 
-        vectorizer = TfidfVectorizer()
-        X = vectorizer.fit_transform(job_documents)
-        model = KMeans(n_clusters=number_of_clusters, init='k-means++', max_iter=1000, n_init=1)
-        model.fit_transform(X)
-
-        # print "labels---------------------------"
-        # print model.labels_
-        #
-        # print "cluster centers---------------------"
-        # print model.cluster_centers_
-
-        for i in range(len(model.labels_)):
-            self.jobs_fetched[i].cluster = int(model.labels_[i])
-
-        # for job in self.jobs_fetched:
-        #     print job.jobTitle
-        #     print job.cluster
-
-        clusters = {}
-        for i in range(number_of_clusters):
-            clusters[i] = []
-
-        for job in self.jobs_fetched:
-            clusters[job.cluster].append(job)
-
-
-        for k,v in clusters.items():
-            print "Cluster"+str(k)+"---------------"
-            for job in v:
-                print "\t"+job.jobTitle
+        kmeans = KmeansClusteringAgent(self.jobs_fetched)
+        clusters = kmeans.start(job_documents, number_of_clusters)
 
         while (True):
             try:
@@ -78,21 +49,36 @@ class Environment:
             except:
                 print "Invalid input. Please try again."
 
-        print 'Printing 2 biggest clusters..'
+        print 'Below are '+str(number_of_clusters_for_nlp)+' biggest clusters of all clusters built using Kmeans'
+        final_clusters_for_nlp = {}
         count = 0
         for k in sorted(clusters, key=lambda k: len(clusters[k]), reverse=True):
             count += 1
             print "Cluster" + str(k) + "---------------"
+
+
+            final_clusters_for_nlp[k] = clusters[k]
+
             for job in clusters[k]:
                 print "\t" + job.jobTitle
 
             print 'Initiating single-link hierarchical clustering on Cluster '+str(k)
             single_link_clustering_agent = SingleLinkClusteringAgent()
 
-            single_link_clustering_agent.start(clusters[k])
+            topic_name = single_link_clustering_agent.start(clusters[k])
+
+            #for now setting it to default dummy name
+            topic_name = "Cluster" + str(k)
+
+            topic = Topic(topic_name)
+            topic.set_syllabus_content()
 
             if count == number_of_clusters_for_nlp:
                 break
+
+
+
+
 
 
 

@@ -113,19 +113,21 @@ class Utils():
 
         pdf = PDFDocument(path)
         pdf.init_report()
-        pdf.h2("San Jose State University",style=pdf.style.bold)
-        pdf.h1("College of Science, Department of Computer Science",style=pdf.style.bold)
-        pdf.h1("Topics in "+topic_obj.topic,style=pdf.style.bold)
-        pdf.h2('Course Description',style=pdf.style.bold)
+        # pdf.h2("San Jose State University",style=pdf.style.bold)
+        # pdf.h1("College of Science, Department of Computer Science",style=pdf.style.bold)
+        pdf.h2("Topic Recommendation:\n")
+        pdf.h1("\nTopics in "+topic_obj.topic)
+        pdf.h2('\nCourse Description')
         techs = ""
         for tech in topic_obj.technologies:
             techs += tech + ", "
         pdf.p("\nIntroduction to topics in " + topic_obj.topic + " such as, "+techs)
         pdf.p(str(topic_obj.listedTech))
-        pdf.h2("Course Learning Outcomes:",style=pdf.style.bold)
+        pdf.h2("\nCourse Learning Outcomes:\n")
         pdf.p(topic_obj.actionList)
-        pdf.h2("Summary:",style=pdf.style.bold)
+        pdf.h2("\nSummary from top job descriptions:\n")
         pdf.p(topic_obj.summary)
+        pdf.draw_watermark("Sample")
         pdf.generate()
         print 'PDF generated..'
 

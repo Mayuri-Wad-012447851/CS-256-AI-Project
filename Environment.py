@@ -46,6 +46,7 @@ class Environment:
         kmeans = KmeansClusteringAgent(self.jobs_fetched)
         clusters, closest = kmeans.start(job_documents, number_of_clusters)
 
+        clusters_obj_list = []
         for index,cluster in clusters.items():
             cl = Cluster()
             cl.cluster_id = index
@@ -57,6 +58,7 @@ class Environment:
                 print "\t" + job.jobTitle
             print "\n Job closest to centroid in cluster "+str(cl.cluster_id)+": \n"
             cl.closest_job_document.printDetails()
+            clusters_obj_list.append(cl)
 
         while (True):
             try:
@@ -70,28 +72,27 @@ class Environment:
                 print "Invalid input. Please try again."
 
         print 'Below are '+str(number_of_clusters_for_nlp)+' biggest clusters of all clusters built using Kmeans'
-        final_clusters_for_nlp = {}
+        final_clusters_for_nlp = []
         topics = []
         count = 0
         for k in sorted(clusters, key=lambda k: len(clusters[k]), reverse=True):
             count += 1
             print "\nCluster" + str(k) + "---------------"
 
-
-            final_clusters_for_nlp[k] = clusters[k]
-
-            # for job in clusters[k]:
-            #     print "\t" + job.jobTitle
+            for obj in clusters_obj_list:
+                if obj.cluster_id == k:
+                    final_clusters_for_nlp.append(obj)
+                    topic = Topic()
+                    topic.cluster = obj
+                    print 'Fetching course topic and contents..'
+                    topic.set_syllabus_content()
+                    topics.append(topic)
+                    print 'Topic fetched..'
+                    break
 
             # print 'Initiating single-link hierarchical clustering on Cluster '+str(k)
             # single_link_clustering_agent = SingleLinkClusteringAgent()
-
             # topic_name = single_link_clustering_agent.start(clusters[k])
-
-            topic = Topic()
-            topic.cluster = clusters[k]
-            topic.set_syllabus_content()
-            topics.append(topic)
 
             if count == number_of_clusters_for_nlp:
                 break

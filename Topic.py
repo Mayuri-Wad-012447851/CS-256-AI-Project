@@ -19,10 +19,10 @@ class Topic:
 
         #integration with NLP
         job_descriptions = ""
-        job_titles = ""
+        # job_titles = ""
         technologies = set()
 
-        for job in self.cluster:
+        for job in self.cluster.cluster:
             url = job.jobLink
             # print job.jobLink
             joblinkTarget = Soup(urllib.urlopen(url), "html.parser")
@@ -45,7 +45,7 @@ class Topic:
                         job_description = job_description.get_text()
             if job_description != None:
                 job_descriptions += job_description
-            job_titles += job.jobTitle
+            # job_titles += job.jobTitle
 
         summarizer = SummarizationModule()
 

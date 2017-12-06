@@ -1,5 +1,5 @@
 from gensim.summarization import summarize
-from Utils import technologies_stopwords
+from Utils import technologies_stopwords, fetch_description_techs
 from SummarizationModule import *
 from bs4 import BeautifulSoup as Soup
 import urllib
@@ -17,7 +17,8 @@ class Topic:
     def set_syllabus_content(self):
 
         job_closest_to_centroid = self.cluster.closest_job_document
-        
+        description_of_job_closest_to_centroid, techSet_of_job_closest_to_centroid = fetch_description_techs(job_closest_to_centroid.jobLink)
+        title_of_job_closest_to_centroid = job_closest_to_centroid.jobTitle
 
         #integration with NLP
         job_descriptions = ""
@@ -54,4 +55,4 @@ class Topic:
         self.summary = summarizer.summarize_job_descriptions(job_descriptions)
         self.listedTech, self.actionList = summarizer.get_listed_tech_and_action_list(job_descriptions)
         self.technologies = technologies
-        self.topic = summarizer.get_topic(job_descriptions)
+        self.topic = summarizer.get_topic(title_of_job_closest_to_centroid)

@@ -71,7 +71,7 @@ class Environment:
             except:
                 print "Invalid input. Please try again."
 
-        print 'Below are '+str(number_of_clusters_for_nlp)+' biggest clusters of all clusters built using Kmeans'
+        print 'Below are '+str(number_of_clusters_for_nlp)+' clusters built using Kmeans in descending order of size of cluster'
         final_clusters_for_nlp = []
         topics = []
         count = 0
@@ -79,20 +79,29 @@ class Environment:
             count += 1
             print "\nCluster" + str(k) + "---------------"
 
-            for obj in clusters_obj_list:
-                if obj.cluster_id == k:
-                    final_clusters_for_nlp.append(obj)
-                    topic = Topic()
-                    topic.cluster = obj
+            for cluster_obj in clusters_obj_list:
+                if cluster_obj.cluster_id == k:
+                    final_clusters_for_nlp.append(cluster_obj)
+
+                    print 'Initiating single-link hierarchical clustering on Cluster ' + str(k)
+                    single_link_clustering_agent = SingleLinkClusteringAgent()
+                    single_link_clustering_agent.cluster = cluster_obj
+                    parent_job = single_link_clustering_agent.start()
+
+                    cluster_obj.parent_job_from_single_link = parent_job
+
+                    print 'Parent job from hierarchy:'
+                    cluster_obj.parent_job_from_single_link.printDetails()
+
                     print 'Fetching course topic and contents..'
+                    topic = Topic()
+                    topic.cluster = cluster_obj
                     topic.set_syllabus_content()
                     topics.append(topic)
+
                     print 'Topic fetched..'
                     break
 
-            # print 'Initiating single-link hierarchical clustering on Cluster '+str(k)
-            # single_link_clustering_agent = SingleLinkClusteringAgent()
-            # topic_name = single_link_clustering_agent.start(clusters[k])
 
             if count == number_of_clusters_for_nlp:
                 break

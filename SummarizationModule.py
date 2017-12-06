@@ -9,33 +9,22 @@ from Utils import actionlist_stopwords
 
 class SummarizationModule:
 
+    def get_topic(self, title):
+
+        topicRake = Rake()
+        topicRake.extract_keywords_from_text(title)
+        topicExtractor = topicRake.get_ranked_phrases()
+        topic = topicExtractor[0]
+        if topic.endswith("ineer"):
+            topic += "ing"
+        elif topic.endswith("oper"):
+            topic = topic[:-2] + "ment"
+
+        return topic
+
     def summarize_job_descriptions(self, text):
 
         return summarize(text)
-
-    def get_topic(self, text):
-        topicRake = Rake()
-        topicRake.extract_keywords_from_text(text)
-        topicExtractor = topicRake.get_ranked_phrases()
-
-        topic = ""
-        for temp_topic in topicExtractor:
-            junk = False
-            if len(temp_topic) <= 50:
-                for word in temp_topic:
-                    if word in stopWords:
-                        junk = True
-                        break
-                if junk == False:
-                    topic = temp_topic
-
-                    if topic.endswith("ineer"):
-                        topic += "ing"
-                    elif topic.endswith("oper"):
-                        topic = topic[:-2] + "ment"
-                    break
-
-        return topic
 
     def get_listed_tech_and_action_list(self, text):
 

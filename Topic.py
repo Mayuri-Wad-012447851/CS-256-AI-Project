@@ -16,6 +16,8 @@ class Topic:
 
     def set_syllabus_content(self):
 
+        job_closest_to_centroid = self.cluster.closest_job_document
+        
 
         #integration with NLP
         job_descriptions = ""

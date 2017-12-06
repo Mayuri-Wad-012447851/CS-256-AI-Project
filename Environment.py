@@ -3,6 +3,7 @@ from SingleLinkClusteringAgent import *
 from Utils import *
 from KmeansClusteringAgent import *
 from Topic import *
+from Cluster import *
 
 
 class Environment:
@@ -17,6 +18,7 @@ class Environment:
         scraper.run_dice_scraper()
         scraper.run_indeed_scraper()
         self.jobs_fetched = Webscraper.jobs_fetched
+        print '\nTotal number of jobs fetched: '+str(len(self.jobs_fetched))
 
 
     def initiate_clustering(self):
@@ -25,7 +27,10 @@ class Environment:
             try:
                 number_of_clusters = raw_input("Enter number of clusters: ")
                 number_of_clusters = int(number_of_clusters)
-                break
+                if number_of_clusters > len(self.jobs_fetched):
+                    print 'Number of clusters cannot be greater than total number of jobs fetched.'
+                else:
+                    break
             except:
                 print "Invalid input. Please try again."
 
@@ -39,13 +44,28 @@ class Environment:
         #     print doc+"\n\n"
 
         kmeans = KmeansClusteringAgent(self.jobs_fetched)
-        clusters = kmeans.start(job_documents, number_of_clusters)
+        clusters, closest = kmeans.start(job_documents, number_of_clusters)
+
+        for index,cluster in clusters.items():
+            cl = Cluster()
+            cl.cluster_id = index
+            cl.cluster = cluster
+            cl.closest_job_document = self.jobs_fetched[closest[index]]
+
+            print "\nCluster" + str(cl.cluster_id) + "--------------------------"
+            for job in cl.cluster:
+                print "\t" + job.jobTitle
+            print "\n Job closest to centroid in cluster "+str(cl.cluster_id)+": \n"
+            cl.closest_job_document.printDetails()
 
         while (True):
             try:
-                number_of_clusters_for_nlp = raw_input("Enter number of top clusters to choose for NLP: ")
+                number_of_clusters_for_nlp = raw_input("\n\nEnter number of course topics to generate: ")
                 number_of_clusters_for_nlp = int(number_of_clusters_for_nlp)
-                break
+                if (number_of_clusters_for_nlp > number_of_clusters):
+                    print 'Enter a number less than the number of clusters.'
+                else:
+                    break
             except:
                 print "Invalid input. Please try again."
 
@@ -55,18 +75,18 @@ class Environment:
         count = 0
         for k in sorted(clusters, key=lambda k: len(clusters[k]), reverse=True):
             count += 1
-            print "Cluster" + str(k) + "---------------"
+            print "\nCluster" + str(k) + "---------------"
 
 
             final_clusters_for_nlp[k] = clusters[k]
 
-            for job in clusters[k]:
-                print "\t" + job.jobTitle
+            # for job in clusters[k]:
+            #     print "\t" + job.jobTitle
 
-            print 'Initiating single-link hierarchical clustering on Cluster '+str(k)
-            single_link_clustering_agent = SingleLinkClusteringAgent()
+            # print 'Initiating single-link hierarchical clustering on Cluster '+str(k)
+            # single_link_clustering_agent = SingleLinkClusteringAgent()
 
-            topic_name = single_link_clustering_agent.start(clusters[k])
+            # topic_name = single_link_clustering_agent.start(clusters[k])
 
             topic = Topic()
             topic.cluster = clusters[k]
@@ -87,11 +107,10 @@ class Environment:
             print ("\nCourse Learning Outcomes: -----------------------------------------------------------------")
             print topic.actionList
             print ('Summary:')
-            print (topic.summary)
+            print (topic.summary.encode('ascii', 'ignore'))
             print ("\n")
 
             self.utils.generate_pdf(topic)
-            self.utils.generate_html(topic)
 
 
 

@@ -12,7 +12,7 @@ def main_run():
 
         print '\nWhat would you like to do?\n'
 
-        print '1. Scrape jobs from web:\t'
+        print '1. Scrape jobs in Computer Science from web:\t'
         print '2. Cluster jobs (K-means and Single Link) \t'
         print '3. Quit'
 

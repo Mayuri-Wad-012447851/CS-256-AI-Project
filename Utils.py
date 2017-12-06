@@ -4,7 +4,7 @@ from nltk import word_tokenize
 from nltk.stem import PorterStemmer
 import math, re
 from pdfdocument.document import PDFDocument
-from io import BytesIO
+import subprocess
 
 stopWords = set(stopwords.words('english'))
 stopWords.update(('a', "a's", 'able', 'about', 'above', 'according', 'accordingly', 'across', 'actually', 'after',
@@ -14,12 +14,12 @@ stopWords.update(('a', "a's", 'able', 'about', 'above', 'according', 'accordingl
                      'appreciate', 'appropriate', 'are', "aren't", 'around', 'as', 'aside', 'ask', 'asking',
                      'associated', 'at', 'available', 'away', 'awfully', 'b', 'be', 'became', 'because', 'become',
                      'becomes', 'becoming', 'been', 'before', 'beforehand', 'behind', 'being', 'believe', 'below',
-                     'beside', 'besides', 'best', 'better', 'between', 'beyond', 'both', 'brief', 'but', 'by', 'c',
+                     'beside', 'besides', 'best', 'better', 'between', 'beyond', 'both', 'brief', 'but', 'by',
                      "c'mon", "c's", 'came', 'can', "can't", 'cannot', 'cant', 'cause', 'causes', 'certain',
                      'certainly', 'changes', 'clearly', 'co', 'com', 'come', 'comes', 'concerning', 'consequently',
                      'consider', 'considering', 'contain', 'containing', 'contains', 'corresponding', 'could',
                      "couldn't", 'course', 'currently', 'd', 'definitely', 'described', 'despite', 'did', "didn't",
-                     'different', 'do', 'does', "doesn't", 'doing', "don't", 'done', 'down', 'downwards', 'during', 'e',
+                     'different', 'do', 'does', "doesn't", 'doing', "don't", 'done', 'down', 'downwards', 'during',
                      'each', 'edu', 'eg', 'eight', 'either', 'else', 'elsewhere', 'enough', 'entirely', 'especially',
                      'et', 'etc', 'even', 'ever', 'every', 'everybody', 'everyone', 'everything', 'everywhere', 'ex',
                      'exactly', 'example', 'except', 'f', 'far', 'few', 'fifth', 'first', 'five', 'followed',
@@ -63,14 +63,20 @@ stopWords.update(('a', "a's", 'able', 'about', 'above', 'according', 'accordingl
                      'whole', 'whom', 'whose', 'why', 'will', 'willing', 'wish', 'with', 'within', 'without', "won't",
                      'wonder', 'would', 'would', "wouldn't", 'x', 'y', 'yes', 'yet', 'you', "you'd", "you'll", "you're",
                      "you've", 'your', 'yours', 'yourself', 'yourselves', 'z', 'zero', '', 'attr', 'job', 'var',
-                     'strong',
-                     'software', 'team', 'computer', 'business', 'development', 'experience', 'td', 'suport',
-                     'engineering', 'technical',
-                     'resume', 'applicants', 'work'))
+                     'strong'))
 
 technologies_stopwords = ['sysadmin', 'build', 'performance', 'infrastructure', 'startup', 'project-management','debugging',
                           'go','system']
 
+actionlist_stopwords = ['personal','resume','come','veteran','motivate','assignments','manager','managers','lead','escalate',
+                        'consult','engineers','participate','business','management','candidate','support','skills','senior',
+                        'outsource','candidates','ensure','deliver','provide','organize','guarantee','client','referral',
+                        'referrals','offer','sell','team','visa','sponsor','sponsorship','confidential','us','grow','customers',
+                        'customer','lose','need','accordingly','flight','track','recommendations','goals','win','feel','hire',
+                        'partnership','partnerships','emerge','emerging','supervise','employee','employees','call','team','hard',
+                        'goals','goal','qualification','qualifications','qualify','qualified','qualifies','bug','defect','review',
+                        'eligibility','eligible','document','documentation','teams','licence','please','talented','people','revenue',
+                        'ownership','take','401k','feedback','forward','look','best','opportunity','opportunities']
 
 class Utils():
 
@@ -123,15 +129,10 @@ class Utils():
             techs += tech + ", "
         pdf.p("\nIntroduction to topics in " + topic_obj.topic + " such as, "+techs)
         pdf.p(str(topic_obj.listedTech))
-        pdf.h2("\nCourse Learning Outcomes:\n")
+        pdf.h2("\nCourse Learning Outcomes:\n\n")
         pdf.p(topic_obj.actionList)
         pdf.h2("\nSummary from top job descriptions:\n")
         pdf.p(topic_obj.summary)
-        pdf.draw_watermark("Sample")
         pdf.generate()
         print 'PDF generated..'
-
-
-
-    def generate_html(self, topic_obj):
-        print 'Generating HTML..'
+        subprocess.Popen(path, shell=True)

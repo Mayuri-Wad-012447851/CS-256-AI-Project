@@ -3,33 +3,42 @@ from gensim.summarization import summarize
 from nltk import word_tokenize, pos_tag, ne_chunk
 import nltk, urllib
 from nltk.stem.wordnet import WordNetLemmatizer
+from Utils import stopWords
 from bs4 import BeautifulSoup as Soup
-nltk.download('maxent_ne_chunker')
-nltk.download('words')
-nltk.download('wordnet')
-
+from Utils import actionlist_stopwords
 
 class SummarizationModule:
 
-    def init(self):
-        pass
-
     def summarize_job_descriptions(self, text):
+
         return summarize(text)
 
     def get_topic(self, text):
         topicRake = Rake()
         topicRake.extract_keywords_from_text(text)
         topicExtractor = topicRake.get_ranked_phrases()
-        topic = topicExtractor[0]
-        if topic.endswith("ineer"):
-            topic += "ing"
-        elif topic.endswith("oper"):
-            topic = topic[:-2] + "ment"
+
+        topic = ""
+        for temp_topic in topicExtractor:
+            junk = False
+            if len(temp_topic) <= 50:
+                for word in temp_topic:
+                    if word in stopWords:
+                        junk = True
+                        break
+                if junk == False:
+                    topic = temp_topic
+
+                    if topic.endswith("ineer"):
+                        topic += "ing"
+                    elif topic.endswith("oper"):
+                        topic = topic[:-2] + "ment"
+                    break
 
         return topic
 
     def get_listed_tech_and_action_list(self, text):
+
         lemmatizer = WordNetLemmatizer()
         r = Rake()
 
@@ -44,6 +53,7 @@ class SummarizationModule:
 
         actionList = ""
         for sent in rankedPhrases:
+            flag_junk = False
             content = ne_chunk(pos_tag(word_tokenize(sent)))
             if len(content) > 1 and content[0][1][0] == 'V':
                 sentList = sent.split()
@@ -52,7 +62,12 @@ class SummarizationModule:
                 sent = ""
                 for i in sentList:
                     sent = sent + " " + i
-                actionList = actionList + sent + "\n"
+                for word in sent:
+                    if (word in actionlist_stopwords):
+                        flag_junk = True
+                        break
+                if flag_junk == False:
+                    actionList = actionList + sent + "\n"
 
         if len(rankedPhrases) > 6:
             for each in range(0, 4):

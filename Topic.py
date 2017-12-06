@@ -1,4 +1,4 @@
-
+from gensim.summarization import summarize
 from Utils import technologies_stopwords
 from SummarizationModule import *
 from bs4 import BeautifulSoup as Soup
@@ -19,11 +19,12 @@ class Topic:
 
         #integration with NLP
         job_descriptions = ""
+        job_titles = ""
         technologies = set()
 
         for job in self.cluster:
             url = job.jobLink
-            print job.jobLink
+            # print job.jobLink
             joblinkTarget = Soup(urllib.urlopen(url), "html.parser")
             techTags = joblinkTarget.findAll('a', attrs={'class': 'post-tag job-link no-tag-menu'})
             for tag in range(len(techTags)):
@@ -44,6 +45,7 @@ class Topic:
                         job_description = job_description.get_text()
             if job_description != None:
                 job_descriptions += job_description
+            job_titles += job.jobTitle
 
         summarizer = SummarizationModule()
 

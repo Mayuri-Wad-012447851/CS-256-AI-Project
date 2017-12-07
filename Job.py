@@ -1,3 +1,8 @@
+'''
+Job class to simulate job fetched from web
+Author : Mayuri Wadkar
+'''
+
 import urllib
 
 class Job:
@@ -19,11 +24,11 @@ class Job:
     #method to print job features
     def printDetails(self):
         print "Job ID:\t"+str(self.id)
-        print "Job Title:\t"+str(self.jobTitle)
+        print "Job Title:\t"+str(self.jobTitle.encode('ascii', 'ignore'))
         print "Location:\t" + str(self.address)
         print "Company:\t"+str(self.companyName)
         joburl = urllib.quote(self.jobLink.encode('utf8'), ':/')
         print "Link:\t"+str(joburl)
-        print str(self.summary)
+        # print str(self.summary)
 
 

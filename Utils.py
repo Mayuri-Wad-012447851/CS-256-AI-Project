@@ -1,3 +1,8 @@
+'''
+Class Utils to facilitate additional functions to overall program
+Author : Mayuri Wadkar
+'''
+
 from Webscraper import *
 from nltk.corpus import stopwords
 from nltk import word_tokenize
@@ -83,18 +88,23 @@ class Utils():
 
     stemmer = PorterStemmer()
 
-
     def dotproduct(self,v1, v2):
         return sum((a * b) for a, b in zip(v1, v2))
 
     def length(self,v):
         return math.sqrt(self.dotproduct(v, v))
 
+    '''
+    Function to compute cosine distance between two TF-IDF vectors
+    '''
     def cosine_distance(self, vector1, vector2):
 
         cosTheta = math.acos(self.dotproduct(vector1, vector2) / (self.length(vector1) * self.length(vector2)))
         return cosTheta
 
+    '''
+    Function to pre-process summary/ description of each job fetched
+    '''
     def clean_process_summary(self, soupObject):
 
         finalSummary = []
@@ -114,6 +124,9 @@ class Utils():
 
         return finalSummary
 
+    '''
+    Function to generate final pdf of course topic
+    '''
     def generate_pdf(self, topic_obj):
         print 'Generating PDF..'
         path = "./PDFDocuments/"+topic_obj.topic+".pdf"

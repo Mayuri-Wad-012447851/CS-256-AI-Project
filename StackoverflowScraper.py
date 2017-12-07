@@ -1,3 +1,8 @@
+'''
+Class StackoverflowScraper to scrape jobs from stackoverflow.com/jobs
+Author : Mayuri Wadkar
+'''
+
 from Utils import *
 from Job import *
 from bs4 import BeautifulSoup as Soup

@@ -1,3 +1,8 @@
+'''
+Class Webscraper acts as an interface or parent class to 3 webscraper modules
+Author : Mayuri Wadkar
+'''
+
 from DiceScraper import *
 from IndeedScraper import *
 from StackoverflowScraper import *

@@ -1,4 +1,8 @@
-from gensim.summarization import summarize
+'''
+Topic class to simulate course topic
+Author : Mayuri Wadkar
+'''
+
 from Utils import technologies_stopwords, fetch_description_techs
 from SummarizationModule import *
 from bs4 import BeautifulSoup as Soup
@@ -14,6 +18,9 @@ class Topic:
         self.actionList = None
         self.summary = None
 
+    '''
+    Function to initiate extraction of course topic, technologies, action lists and summary
+    '''
     def set_syllabus_content(self):
 
         job_closest_to_centroid = self.cluster.closest_job_document

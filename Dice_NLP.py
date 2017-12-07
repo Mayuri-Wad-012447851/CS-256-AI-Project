@@ -1,9 +1,12 @@
+'''
+Module to extract technologies, action lists and summary from job description
+Author : Samanvitha Basole
+'''
 # -*- coding: utf-8 -*-
 import collections
 
 from rake_nltk import Rake
 from gensim.summarization import summarize
-from gensim.summarization import keywords
 from bs4 import BeautifulSoup
 import urllib
 from nltk import word_tokenize, pos_tag, ne_chunk

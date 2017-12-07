@@ -1,3 +1,8 @@
+'''
+Class IndeedScraper to scrape jobs from indeed.com
+Author : Mayuri Wadkar
+'''
+
 from Utils import *
 from Job import *
 from bs4 import BeautifulSoup as Soup

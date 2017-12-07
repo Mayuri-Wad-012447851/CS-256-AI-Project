@@ -1,3 +1,8 @@
+'''
+Main module which is a starting point of project
+Author : Mayuri Wadkar
+'''
+
 from Environment import *
 
 '''

@@ -1,3 +1,8 @@
+'''
+KmeansClusteringAgent class to perform k-means clustering on array of job descriptions
+Author : Mayuri Wadkar
+'''
+
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics import pairwise_distances_argmin_min
 from sklearn.cluster import KMeans

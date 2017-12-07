@@ -1,3 +1,8 @@
+'''
+Module to extract technologies, action lists and summary from job description
+Author : Samanvitha Basole
+'''
+
 # -*- coding: utf-8 -*-
 import collections
 

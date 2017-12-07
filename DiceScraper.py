@@ -1,3 +1,8 @@
+'''
+Class DiceScraper to scrape jobs from Dice.com
+Author : Mayuri Wadkar
+'''
+
 from Utils import *
 from bs4 import BeautifulSoup as Soup
 from Job import *

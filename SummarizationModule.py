@@ -1,10 +1,12 @@
+'''
+Module to extract technologies, action lists and summary from job description
+Author : Samanvitha Basole
+'''
+
 from rake_nltk import Rake
 from gensim.summarization import summarize
 from nltk import word_tokenize, pos_tag, ne_chunk
-import nltk, urllib
 from nltk.stem.wordnet import WordNetLemmatizer
-from Utils import stopWords
-from bs4 import BeautifulSoup as Soup
 from Utils import actionlist_stopwords
 
 class SummarizationModule:

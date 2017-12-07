@@ -1,3 +1,8 @@
+'''
+Environment class to to initiate job scraping and interact with agents to drive clustering operations
+Author : Mayuri Wadkar
+'''
+
 from Webscraper import *
 from SingleLinkClusteringAgent import *
 from Utils import *
@@ -5,12 +10,14 @@ from KmeansClusteringAgent import *
 from Topic import *
 from Cluster import *
 
-
 class Environment:
 
     utils = Utils()
     jobs_fetched = []
 
+    '''
+    Function to initiate web scraping of jobs using three scrapers.
+    '''
     def start_webscraping_jobs(self):
 
         scraper = Webscraper()
@@ -20,7 +27,9 @@ class Environment:
         self.jobs_fetched = Webscraper.jobs_fetched
         print '\nTotal number of jobs fetched: '+str(len(self.jobs_fetched))
 
-
+    '''
+    Function to initiate clustering on jobs fetched
+    '''
     def initiate_clustering(self):
 
         while(True):
@@ -55,7 +64,7 @@ class Environment:
 
             print "\nCluster" + str(cl.cluster_id) + "--------------------------"
             for job in cl.cluster:
-                print "\t" + job.jobTitle
+                print "\t" + job.jobTitle.encode('ascii', 'ignore')
             print "\n Job closest to centroid in cluster "+str(cl.cluster_id)+": \n"
             cl.closest_job_document.printDetails()
             clusters_obj_list.append(cl)

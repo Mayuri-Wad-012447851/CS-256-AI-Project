@@ -1,3 +1,8 @@
+'''
+SingleLinkClusteringAgent class to perform single link hierarchical clustering on array of job descriptions
+Author : Pratik Surana
+'''
+
 from Utils import fetch_description_techs
 import numpy as np
 from sklearn.feature_extraction.text import CountVectorizer
@@ -38,12 +43,10 @@ class SingleLinkClusteringAgent:
         linkage_matrix = single(dist)
         dendrogram(linkage_matrix, orientation="right", labels=titles)
         leaves = leaves_list(linkage_matrix)
-        # print titles[leaves[0]] + " is the parent."
-
+        plt.subplots_adjust(left=0.50)
         parent_job = self.cluster.cluster[leaves[0]]
-        # plt.tight_layout()
-        plt.savefig('./Plots/SingleLinkClusteringPlot.png')
-
+        plt.savefig('./Plots/Cluster_'+str(self.cluster.cluster_id)+'_SingleLinkClusteringPlot.png')
+        # plt.show()
         return parent_job
 
 
